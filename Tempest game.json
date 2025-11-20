@@ -589,7 +589,13 @@
       "name": "WoodBlueBar",
       "type": "PanelSpriteContinuousBar::PanelSpriteContinuousBar",
       "variant": "Wood Blue Bar",
-      "variables": [],
+      "variables": [
+        {
+          "name": "Moisture",
+          "type": "number",
+          "value": 100
+        }
+      ],
       "effects": [],
       "behaviors": [
         {
@@ -629,7 +635,7 @@
         "BarBottomPadding": 8,
         "BarLeftPadding": 10,
         "PreviousHighValueDuration": 0,
-        "ShowLabel": false
+        "ShowLabel": true
       }
     }
   ],
@@ -667,12 +673,48 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.7619362677197635,
+        "zoomFactor": 0.814188120370995,
         "windowMask": false,
         "selectedLayer": "UI"
       },
       "objectsGroups": [],
-      "variables": [],
+      "variables": [
+        {
+          "name": "counter",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "counterM",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "amountCloud",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "cloudActive1",
+          "type": "boolean",
+          "value": true
+        },
+        {
+          "name": "cloudActive2",
+          "type": "boolean",
+          "value": true
+        },
+        {
+          "name": "cloudActive3",
+          "type": "boolean",
+          "value": true
+        },
+        {
+          "name": "cloudActive4",
+          "type": "boolean",
+          "value": true
+        }
+      ],
       "instances": [
         {
           "angle": 0,
@@ -764,7 +806,7 @@
           "angle": 0,
           "customSize": true,
           "depth": 1,
-          "height": 193,
+          "height": 208,
           "keepRatio": true,
           "layer": "",
           "name": "cloud1",
@@ -781,7 +823,7 @@
           "angle": 0,
           "customSize": true,
           "depth": 1,
-          "height": 186,
+          "height": 197,
           "keepRatio": true,
           "layer": "",
           "name": "cloud2",
@@ -798,7 +840,7 @@
           "angle": 0,
           "customSize": true,
           "depth": 1,
-          "height": 189,
+          "height": 202,
           "keepRatio": true,
           "layer": "",
           "name": "cloud3",
@@ -996,31 +1038,15 @@
         {
           "angle": 0,
           "customSize": true,
-          "depth": 64,
-          "height": 31,
-          "keepRatio": true,
-          "layer": "",
-          "name": "WoodBlueBar",
-          "persistentUuid": "78a64ca7-e2af-4ea2-94ac-737a684647fd",
-          "width": 158,
-          "x": 127,
-          "y": 31,
-          "zOrder": 36,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
+          "depth": 1,
+          "height": 27,
           "keepRatio": true,
           "layer": "UI",
           "name": "HealthBar",
           "persistentUuid": "73fecf70-add7-4817-b09a-269ff5a7a898",
-          "width": 0,
+          "width": 162,
           "x": 128,
-          "y": 113,
+          "y": 40,
           "zOrder": 37,
           "numberProperties": [],
           "stringProperties": [],
@@ -4022,6 +4048,56 @@
                 "HealthBar",
                 "(\"Decay\")"
               ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "cloudActive1",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "cloudActive2",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "cloudActive3",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "cloudActive4",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "amountCloud",
+                "=",
+                "4"
+              ]
             }
           ]
         },
@@ -4049,77 +4125,6 @@
                 "Resizable",
                 "64",
                 "64"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "CompareObjectTimer"
-              },
-              "parameters": [
-                "WoodBlueBar",
-                "(\"moisture\")",
-                ">=",
-                "1"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "Health::Health::Hit"
-              },
-              "parameters": [
-                "WoodBlueBar",
-                "Health",
-                "1",
-                "",
-                "",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "CompareObjectTimer"
-              },
-              "parameters": [
-                "HealthBar",
-                "(\"Decay\")",
-                ">=",
-                "1"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "ResizableCapability::ResizableBehavior::SetWidth"
-              },
-              "parameters": [
-                "HealthBar",
-                "Resizable",
-                "-",
-                "1"
-              ]
-            },
-            {
-              "type": {
-                "value": "SetNumberObjectVariable"
-              },
-              "parameters": [
-                "HealthBar",
-                "Moisture",
-                "-",
-                "1"
               ]
             }
           ]
@@ -4449,7 +4454,6 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Cloud shooting",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -4470,6 +4474,16 @@
                 },
                 {
                   "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "cloudActive1",
+                    "True",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "KeyFromTextPressed"
                   },
                   "parameters": [
@@ -4486,11 +4500,11 @@
                   "parameters": [
                     "cloud1",
                     "FireBullet",
-                    "cloud1.CenterX()",
-                    "cloud1.CenterY() - 25",
+                    "468",
+                    "CursorY()",
                     "projectile",
                     "spawn1",
-                    "100",
+                    "200",
                     ""
                   ]
                 }
@@ -4512,6 +4526,16 @@
                 },
                 {
                   "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "cloudActive2",
+                    "True",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "KeyFromTextPressed"
                   },
                   "parameters": [
@@ -4528,11 +4552,11 @@
                   "parameters": [
                     "cloud2",
                     "FireBullet",
-                    "cloud2.CenterX()",
-                    "cloud2.CenterY() - 25",
+                    "468",
+                    "CursorY()",
                     "projectile",
                     "spawn2",
-                    "100",
+                    "200",
                     ""
                   ]
                 }
@@ -4554,6 +4578,16 @@
                 },
                 {
                   "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "cloudActive3",
+                    "True",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "KeyFromTextPressed"
                   },
                   "parameters": [
@@ -4570,11 +4604,11 @@
                   "parameters": [
                     "cloud3",
                     "FireBullet",
-                    "cloud3.CenterX()",
-                    "cloud3.CenterY() - 25",
+                    "468",
+                    "CursorY()",
                     "projectile",
-                    "Wall",
-                    "100",
+                    "spawn3",
+                    "200",
                     ""
                   ]
                 }
@@ -4596,6 +4630,16 @@
                 },
                 {
                   "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "cloudActive4",
+                    "True",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
                     "value": "KeyFromTextPressed"
                   },
                   "parameters": [
@@ -4612,11 +4656,11 @@
                   "parameters": [
                     "cloud4",
                     "FireBullet",
-                    "cloud4.X() + 100",
-                    "cloud4.Y() + 25",
+                    "468",
+                    "CursorY()",
                     "projectile",
-                    "Wall",
-                    "100",
+                    "spawn4",
+                    "200",
                     ""
                   ]
                 }
@@ -4667,7 +4711,6 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Sun projectile touch cloud",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -4677,44 +4720,119 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "CollisionNP"
+                    "value": "BooleanVariable"
                   },
                   "parameters": [
-                    "project",
-                    "cloud1",
-                    "",
-                    "",
+                    "cloudActive1",
+                    "True",
                     ""
                   ]
                 }
               ],
-              "actions": [
+              "actions": [],
+              "events": [
                 {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "cloud1",
-                    "Animation",
-                    "=",
-                    "\"cloudDisappear\""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud1",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                      },
+                      "parameters": [
+                        "cloud1",
+                        "Animation",
+                        "=",
+                        "\"cloudDisappear\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Wait"
+                      },
+                      "parameters": [
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetBooleanVariable"
+                      },
+                      "parameters": [
+                        "cloudActive1",
+                        "False",
+                        ""
+                      ]
+                    }
                   ]
                 },
                 {
-                  "type": {
-                    "value": "Wait"
-                  },
-                  "parameters": [
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "cloud1",
-                    ""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud1",
+                        "",
+                        "",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Delete"
+                      },
+                      "parameters": [
+                        "project",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetNumberVariable"
+                      },
+                      "parameters": [
+                        "amountCloud",
+                        "-",
+                        "1"
+                      ]
+                    }
                   ]
                 }
               ]
@@ -4724,43 +4842,119 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "CollisionNP"
+                    "value": "BooleanVariable"
                   },
                   "parameters": [
-                    "project",
-                    "cloud1",
-                    "",
-                    "",
+                    "cloudActive2",
+                    "True",
                     ""
                   ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
                 }
               ],
-              "actions": [
+              "actions": [],
+              "events": [
                 {
-                  "type": {
-                    "value": "PlaySound"
-                  },
-                  "parameters": [
-                    "",
-                    "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
-                    "",
-                    "40",
-                    "1"
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud2",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                      },
+                      "parameters": [
+                        "cloud2",
+                        "Animation",
+                        "=",
+                        "\"cloudDisappear\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Wait"
+                      },
+                      "parameters": [
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetBooleanVariable"
+                      },
+                      "parameters": [
+                        "cloudActive2",
+                        "False",
+                        ""
+                      ]
+                    }
                   ]
                 },
                 {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "project",
-                    ""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud2",
+                        "",
+                        "",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Delete"
+                      },
+                      "parameters": [
+                        "project",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetNumberVariable"
+                      },
+                      "parameters": [
+                        "amountCloud",
+                        "-",
+                        "1"
+                      ]
+                    }
                   ]
                 }
               ]
@@ -4770,44 +4964,119 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "CollisionNP"
+                    "value": "BooleanVariable"
                   },
                   "parameters": [
-                    "project",
-                    "cloud2",
-                    "",
-                    "",
+                    "cloudActive3",
+                    "True",
                     ""
                   ]
                 }
               ],
-              "actions": [
+              "actions": [],
+              "events": [
                 {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "cloud2",
-                    "Animation",
-                    "=",
-                    "\"cloudDisappear\""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud3",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                      },
+                      "parameters": [
+                        "cloud3",
+                        "Animation",
+                        "=",
+                        "\"cloudDisappear\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Wait"
+                      },
+                      "parameters": [
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetBooleanVariable"
+                      },
+                      "parameters": [
+                        "cloudActive3",
+                        "False",
+                        ""
+                      ]
+                    }
                   ]
                 },
                 {
-                  "type": {
-                    "value": "Wait"
-                  },
-                  "parameters": [
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "cloud2",
-                    ""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud3",
+                        "",
+                        "",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Delete"
+                      },
+                      "parameters": [
+                        "project",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetNumberVariable"
+                      },
+                      "parameters": [
+                        "amountCloud",
+                        "-",
+                        "1"
+                      ]
+                    }
                   ]
                 }
               ]
@@ -4817,229 +5086,119 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "CollisionNP"
+                    "value": "BooleanVariable"
                   },
                   "parameters": [
-                    "project",
-                    "cloud2",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySound"
-                  },
-                  "parameters": [
-                    "",
-                    "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
-                    "",
-                    "40",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "project",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "CollisionNP"
-                  },
-                  "parameters": [
-                    "project",
-                    "cloud3",
-                    "",
-                    "",
+                    "cloudActive4",
+                    "True",
                     ""
                   ]
                 }
               ],
-              "actions": [
+              "actions": [],
+              "events": [
                 {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "cloud3",
-                    "Animation",
-                    "=",
-                    "\"cloudDisappear\""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud4",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                      },
+                      "parameters": [
+                        "cloud4",
+                        "Animation",
+                        "=",
+                        "\"cloudDisappear\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Wait"
+                      },
+                      "parameters": [
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetBooleanVariable"
+                      },
+                      "parameters": [
+                        "cloudActive4",
+                        "False",
+                        ""
+                      ]
+                    }
                   ]
                 },
                 {
-                  "type": {
-                    "value": "Wait"
-                  },
-                  "parameters": [
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "cloud3",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "CollisionNP"
-                  },
-                  "parameters": [
-                    "project",
-                    "cloud3",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySound"
-                  },
-                  "parameters": [
-                    "",
-                    "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
-                    "",
-                    "40",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "project",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "CollisionNP"
-                  },
-                  "parameters": [
-                    "project",
-                    "cloud4",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                  },
-                  "parameters": [
-                    "cloud4",
-                    "Animation",
-                    "=",
-                    "\"cloudDisappear\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Wait"
-                  },
-                  "parameters": [
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "cloud4",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "CollisionNP"
-                  },
-                  "parameters": [
-                    "project",
-                    "cloud4",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "PlaySound"
-                  },
-                  "parameters": [
-                    "",
-                    "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
-                    "",
-                    "40",
-                    "1"
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Delete"
-                  },
-                  "parameters": [
-                    "project",
-                    ""
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "project",
+                        "cloud4",
+                        "",
+                        "",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "20c1edc1dad3064721fc9a0621345e2b79198fae67e5a31cc9c3145b6654ba90_Explosion 6.aac",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Delete"
+                      },
+                      "parameters": [
+                        "project",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "SetNumberVariable"
+                      },
+                      "parameters": [
+                        "amountCloud",
+                        "-",
+                        "1"
+                      ]
+                    }
                   ]
                 }
               ]
@@ -5052,7 +5211,6 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Sun fire",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -5085,7 +5243,7 @@
                     "project",
                     "city.CenterX()",
                     "city.CenterY()",
-                    "200",
+                    "150",
                     ""
                   ]
                 }
@@ -5119,7 +5277,7 @@
                     "project",
                     "city2.CenterX()",
                     "city2.CenterY()",
-                    "200",
+                    "150",
                     ""
                   ]
                 }
@@ -5153,7 +5311,7 @@
                     "project",
                     "city3.CenterX()",
                     "city3.CenterY()",
-                    "200",
+                    "150",
                     ""
                   ]
                 }
@@ -5187,7 +5345,7 @@
                     "project",
                     "city4.CenterX()",
                     "city4.CenterY()",
-                    "200",
+                    "150",
                     ""
                   ]
                 }
@@ -5207,6 +5365,81 @@
           "events": [
             {
               "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "counter",
+                    "+",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "counterM",
+                    "=",
+                    "(60/4) * amountCloud"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "counter",
+                    ">=",
+                    "counterM"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "counter",
+                    "=",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberObjectVariable"
+                  },
+                  "parameters": [
+                    "HealthBar",
+                    "Moisture",
+                    "-",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ResizableCapability::ResizableBehavior::SetWidth"
+                  },
+                  "parameters": [
+                    "HealthBar",
+                    "Resizable",
+                    "-",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
                   "type": {
@@ -5224,19 +5457,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "Health::Health::Hit"
-                  },
-                  "parameters": [
-                    "WoodBlueBar",
-                    "Health",
-                    "5",
-                    "5",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
                     "value": "Delete"
                   },
                   "parameters": [
@@ -5246,13 +5466,24 @@
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "SetNumberObjectVariable"
                   },
                   "parameters": [
-                    "WoodBlueBar",
+                    "HealthBar",
+                    "Moisture",
                     "-",
-                    "5",
-                    ""
+                    "5"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ResizableCapability::ResizableBehavior::SetWidth"
+                  },
+                  "parameters": [
+                    "HealthBar",
+                    "Resizable",
+                    "-",
+                    "5"
                   ]
                 }
               ]
@@ -5276,19 +5507,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "Health::Health::Hit"
-                  },
-                  "parameters": [
-                    "WoodBlueBar",
-                    "Health",
-                    "5",
-                    "5",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
                     "value": "Delete"
                   },
                   "parameters": [
@@ -5298,24 +5516,24 @@
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "SetNumberObjectVariable"
                   },
                   "parameters": [
-                    "WoodBlueBar",
-                    "=",
-                    "WoodBlueBar.Health::Health()",
-                    ""
+                    "HealthBar",
+                    "Moisture",
+                    "-",
+                    "5"
                   ]
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "ResizableCapability::ResizableBehavior::SetWidth"
                   },
                   "parameters": [
-                    "WoodBlueBar",
+                    "HealthBar",
+                    "Resizable",
                     "-",
-                    "5",
-                    ""
+                    "5"
                   ]
                 }
               ]
@@ -5339,19 +5557,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "Health::Health::Hit"
-                  },
-                  "parameters": [
-                    "WoodBlueBar",
-                    "Health",
-                    "5",
-                    "5",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
                     "value": "Delete"
                   },
                   "parameters": [
@@ -5361,24 +5566,24 @@
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "SetNumberObjectVariable"
                   },
                   "parameters": [
-                    "WoodBlueBar",
-                    "=",
-                    "WoodBlueBar.Health::Health()",
-                    ""
+                    "HealthBar",
+                    "Moisture",
+                    "-",
+                    "5"
                   ]
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "ResizableCapability::ResizableBehavior::SetWidth"
                   },
                   "parameters": [
-                    "WoodBlueBar",
+                    "HealthBar",
+                    "Resizable",
                     "-",
-                    "5",
-                    ""
+                    "5"
                   ]
                 }
               ]
@@ -5402,19 +5607,6 @@
               "actions": [
                 {
                   "type": {
-                    "value": "Health::Health::Hit"
-                  },
-                  "parameters": [
-                    "WoodBlueBar",
-                    "Health",
-                    "5",
-                    "5",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
                     "value": "Delete"
                   },
                   "parameters": [
@@ -5424,24 +5616,24 @@
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "SetNumberObjectVariable"
                   },
                   "parameters": [
-                    "WoodBlueBar",
-                    "=",
-                    "WoodBlueBar.Health::Health()",
-                    ""
+                    "HealthBar",
+                    "Moisture",
+                    "-",
+                    "5"
                   ]
                 },
                 {
                   "type": {
-                    "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+                    "value": "ResizableCapability::ResizableBehavior::SetWidth"
                   },
                   "parameters": [
-                    "WoodBlueBar",
+                    "HealthBar",
+                    "Resizable",
                     "-",
-                    "5",
-                    ""
+                    "5"
                   ]
                 }
               ]
@@ -5454,13 +5646,24 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::Value"
+                "value": "NumberObjectVariable"
               },
               "parameters": [
-                "WoodBlueBar",
-                "=",
-                "0",
-                ""
+                "HealthBar",
+                "Moisture",
+                "<=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "ResizableCapability::ResizableBehavior::Width"
+              },
+              "parameters": [
+                "HealthBar",
+                "Resizable",
+                "<=",
+                "0"
               ]
             }
           ],
@@ -5476,33 +5679,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
-              },
-              "parameters": [
-                "WoodBlueBar",
-                "=",
-                "WoodBlueBar.Health::Health()",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
         }
       ],
       "layers": [
