@@ -523,6 +523,64 @@
           "identifier": "https://asset-resources.gdevelop.io/public-resources/Resource bars/5c3135f6fa8587da82ddea950881fc8b35d422bb806d9331f8b47fdc715ee76a_Wood Bar Border.png",
           "name": "Wood Bar Border.png"
         }
+      },
+      {
+        "file": "assets/WaterV1_Walk_09.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false,
+        "origin": {
+          "identifier": "https://asset-resources.gdevelop.io/public-resources/SoundEffects/Nox Footsteps/Water/Walk/7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+          "name": "gdevelop-asset-store"
+        }
+      },
+      {
+        "file": "Sekiro - Perilous Attack Sound Effect-(p).mp3",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Sekiro - Perilous Attack Sound Effect-(p).mp3",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Untitled video - Made with Clipchamp (1).mp3",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Untitled video - Made with Clipchamp (1).mp3",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "hit.mp3",
+        "kind": "audio",
+        "metadata": "",
+        "name": "hit.mp3",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "assets/sfx_hurt.ogg",
+        "kind": "audio",
+        "metadata": "",
+        "name": "b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false,
+        "origin": {
+          "identifier": "https://asset-resources.gdevelop.io/public-resources/Kenney New Platformer Pack 1.0/Sounds/b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+          "name": "gdevelop-asset-store"
+        }
       }
     ],
     "resourceFolders": []
@@ -1842,7 +1900,7 @@
             {
               "name": "FireBullet",
               "type": "FireBullet::FireBullet",
-              "FireCooldown": 1,
+              "FireCooldown": 0.5,
               "HasJustFired": false,
               "RotateBullet": true,
               "FiringArc": 0,
@@ -2199,7 +2257,7 @@
             {
               "name": "FireBullet",
               "type": "FireBullet::FireBullet",
-              "FireCooldown": 1,
+              "FireCooldown": 0.5,
               "HasJustFired": false,
               "RotateBullet": true,
               "FiringArc": 0,
@@ -2556,7 +2614,7 @@
             {
               "name": "FireBullet",
               "type": "FireBullet::FireBullet",
-              "FireCooldown": 1,
+              "FireCooldown": 0.5,
               "HasJustFired": false,
               "RotateBullet": true,
               "FiringArc": 0,
@@ -2913,7 +2971,7 @@
             {
               "name": "FireBullet",
               "type": "FireBullet::FireBullet",
-              "FireCooldown": 1,
+              "FireCooldown": 0.5,
               "HasJustFired": false,
               "RotateBullet": true,
               "FiringArc": 0,
@@ -4508,6 +4566,33 @@
                     ""
                   ]
                 }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    }
+                  ]
+                }
               ]
             },
             {
@@ -4558,6 +4643,33 @@
                     "spawn2",
                     "200",
                     ""
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    }
                   ]
                 }
               ]
@@ -4612,6 +4724,33 @@
                     ""
                   ]
                 }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    }
+                  ]
+                }
               ]
             },
             {
@@ -4664,6 +4803,33 @@
                     ""
                   ]
                 }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "PlaySound"
+                      },
+                      "parameters": [
+                        "",
+                        "7c712ff2f417b62bf541ef694facc1eb67306af00029d80885f13f2a9a1d2c39_WaterV1_Walk_09.wav",
+                        "",
+                        "40",
+                        "1"
+                      ]
+                    }
+                  ]
+                }
               ]
             },
             {
@@ -4700,6 +4866,18 @@
                     "project",
                     ""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "hit.mp3",
+                    "",
+                    "10",
+                    "1"
+                  ]
                 }
               ]
             }
@@ -4711,6 +4889,7 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
+          "folded": true,
           "name": "Sun projectile touch cloud",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -5485,6 +5664,18 @@
                     "-",
                     "5"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+                    "",
+                    "10",
+                    "1"
+                  ]
                 }
               ]
             },
@@ -5534,6 +5725,18 @@
                     "Resizable",
                     "-",
                     "5"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+                    "",
+                    "10",
+                    "1"
                   ]
                 }
               ]
@@ -5585,6 +5788,18 @@
                     "-",
                     "5"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+                    "",
+                    "10",
+                    "1"
+                  ]
                 }
               ]
             },
@@ -5634,6 +5849,18 @@
                     "Resizable",
                     "-",
                     "5"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
+                    "",
+                    "10",
+                    "1"
                   ]
                 }
               ]
