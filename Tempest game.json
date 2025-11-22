@@ -581,6 +581,38 @@
           "identifier": "https://asset-resources.gdevelop.io/public-resources/Kenney New Platformer Pack 1.0/Sounds/b78a7094de394de59ccae643c7e862fe6b2f51c63e7a9dd91121b9b753e06bd9_sfx_hurt.ogg",
           "name": "gdevelop-asset-store"
         }
+      },
+      {
+        "file": "assets/cloud1.png",
+        "kind": "image",
+        "metadata": "{\"localFilePath\":\"assets/cloud1.png\",\"extension\":\".png\"}",
+        "name": "assets/cloud1.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "file": "assets/cloud.png",
+        "kind": "image",
+        "metadata": "{\"localFilePath\":\"assets/cloud.png\",\"extension\":\".png\"}",
+        "name": "assets/cloud.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "file": "assets/cloud_128x128.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "assets/cloud_128x128.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "file": "assets/cloud_1_160x160.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "assets/cloud_1_160x160.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -771,6 +803,11 @@
           "name": "cloudActive4",
           "type": "boolean",
           "value": true
+        },
+        {
+          "name": "fireballsKilled",
+          "type": "number",
+          "value": 0
         }
       ],
       "instances": [
@@ -1106,6 +1143,22 @@
           "x": 128,
           "y": 40,
           "zOrder": 37,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "UI",
+          "name": "fireballCounter",
+          "persistentUuid": "6e1a0df7-10e2-4e8d-aefa-9841d3ae9927",
+          "width": 0,
+          "x": 129,
+          "y": 74,
+          "zOrder": 38,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -3990,6 +4043,116 @@
             "lineHeight": 0,
             "color": "0;0;0"
           }
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "fireballCounter",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "Text",
+          "font": "",
+          "textAlignment": "left",
+          "characterSize": 20,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 0
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "Text",
+            "font": "",
+            "textAlignment": "left",
+            "verticalTextAlignment": "top",
+            "characterSize": 20,
+            "lineHeight": 0,
+            "color": "0;0;0"
+          }
+        },
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "blockingCloud",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "HP",
+              "type": "number",
+              "value": 2
+            }
+          ],
+          "effects": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "assets/cloud",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "metadata": "{\"pskl\":{}}",
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "assets/cloud_1_160x160.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 160,
+                            "y": 0
+                          },
+                          {
+                            "x": 160,
+                            "y": 160
+                          },
+                          {
+                            "x": 0,
+                            "y": 160
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       "objectsFolderStructure": {
@@ -3997,6 +4160,9 @@
         "children": [
           {
             "objectName": "Ground_Tilemap"
+          },
+          {
+            "objectName": "fireballCounter"
           },
           {
             "objectName": "Wall"
@@ -4033,6 +4199,9 @@
           },
           {
             "objectName": "spawn4"
+          },
+          {
+            "objectName": "blockingCloud"
           },
           {
             "objectName": "cloud1"
@@ -4878,6 +5047,120 @@
                     "10",
                     "1"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "fireballsKilled",
+                    "+",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                  },
+                  "parameters": [
+                    "fireballCounter",
+                    "Text",
+                    "=",
+                    "\"Points: \" + ToString(Variable(fireballsKilled))\n"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "MouseButtonFromTextReleased"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Right\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "fireballsKilled",
+                    ">=",
+                    "5"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Create"
+                  },
+                  "parameters": [
+                    "",
+                    "blockingCloud",
+                    "CursorX()",
+                    "CursorY()",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "fireballsKilled",
+                    "-",
+                    "5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "project",
+                    "blockingCloud",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberObjectVariable"
+                  },
+                  "parameters": [
+                    "blockingCloud",
+                    "HP",
+                    "-",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Delete"
+                  },
+                  "parameters": [
+                    "project",
+                    ""
+                  ]
                 }
               ]
             }
@@ -4885,11 +5168,37 @@
           "parameters": []
         },
         {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberObjectVariable"
+              },
+              "parameters": [
+                "blockingCloud",
+                "HP",
+                "<=",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "blockingCloud",
+                ""
+              ]
+            }
+          ]
+        },
+        {
           "colorB": 228,
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Sun projectile touch cloud",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
